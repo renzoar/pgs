@@ -1,0 +1,74 @@
+/* 
+ * Copyright 2020 Renzo Angles (http://renzoangles.com/)
+ * 
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *   http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+package pg;
+
+import java.util.ArrayList;
+import java.util.Iterator;
+
+public abstract class Object {
+    
+    protected int id = 0;
+    protected ArrayList<String> labels = new ArrayList();
+    protected ArrayList<Property> properties = new ArrayList();
+
+    public void setId(int _id){
+        this.id = _id;
+    }
+    
+    public int getId(){
+        return this.id;
+    }
+    
+    public String getLabel(){
+        if(!labels.isEmpty()){
+            return labels.get(0);
+        }
+        return null;
+    }
+    
+    public void addLabel(String label){
+        if(!labels.contains(label)){
+            labels.add(label);
+        }
+    }
+    
+    public Iterator<String> getLabels(){
+        return labels.iterator();
+    }
+
+    public void addProperty(Property prop){
+        if(!properties.contains(prop)){
+            properties.add(prop);
+        }
+    }
+    
+    public Iterator<Property> getProperties(){
+        return properties.iterator();
+    }    
+    
+    public boolean hasProperty(String property_name){
+        Property prop;
+        Iterator<Property> it = this.properties.iterator();
+        while(it.hasNext()){
+            prop = it.next();
+            if(prop.getLabel().compareTo(property_name)==0){
+                return true;
+            }
+        }
+        return false;
+    }
+    
+}
