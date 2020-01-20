@@ -24,3 +24,5 @@ hs_err_pid*
 /pgs/nbproject/private/
 /pgs/dist/
 /pgs/build/
+/build/
+/dist/
