@@ -15,7 +15,7 @@
  */
 package pg;
 
-public class Property {
+public class PGProperty {
     
     private int id = 0;
     private String label = "";
@@ -23,7 +23,7 @@ public class Property {
     private String datatype = "string";
     private Object owner = null;
     
-    public Property(Object owner, String _label, String _value){
+    public PGProperty(Object owner, String _label, String _value){
         this.owner = owner;
         this.label = _label;
         this.value = _value;
@@ -37,11 +37,11 @@ public class Property {
         return this.id;
     }
     
-    public void setOwner(Node node){
+    public void setOwner(PGNode node){
         owner = node;
     }
     
-    public void setOwner(Edge edge){
+    public void setOwner(PGEdge edge){
         owner = edge;
     }
     

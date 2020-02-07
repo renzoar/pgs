@@ -24,58 +24,58 @@ import java.util.Iterator;
 
 public class PropertyGraph {
     
-    ArrayList<Node> nodes = new ArrayList();
-    ArrayList<Edge> edges = new ArrayList();    
-    ArrayList<Property> properties = new ArrayList(); 
+    ArrayList<PGNode> nodes = new ArrayList();
+    ArrayList<PGEdge> edges = new ArrayList();    
+    ArrayList<PGProperty> properties = new ArrayList(); 
     int free_id = 0;
     
     public PropertyGraph(){
         
     }
     
-    public Iterator<Node> getNodes(){
+    public Iterator<PGNode> getNodes(){
         return nodes.iterator();
     }
     
-    public Iterator<Edge> getEdges(){
+    public Iterator<PGEdge> getEdges(){
         return edges.iterator();
     }
 
-    public Iterator<Property> getProperties(){
+    public Iterator<PGProperty> getProperties(){
         return properties.iterator();
     }    
     
-    public Node createNode(){
-        Node node = new Node();
+    public PGNode createNode(){
+        PGNode node = new PGNode();
         node.setId(free_id++);
         nodes.add(node);
         return node;
     }
     
-    public Node createNode(String label){
-        Node node = new Node();
+    public PGNode createNode(String label){
+        PGNode node = new PGNode();
         node.setId(free_id++);
         node.addLabel(label);
         nodes.add(node);
         return node;
     }  
     
-    public Edge createEdge(Node source, Node target){
-        Edge edge = new Edge(source,target);
+    public PGEdge createEdge(PGNode source, PGNode target){
+        PGEdge edge = new PGEdge(source,target);
         edge.setId(free_id++);
         edges.add(edge);
         return edge;
     }
     
-    public Edge createEdge(String label, Node source, Node target){
-        Edge edge = new Edge(label, source,target);
+    public PGEdge createEdge(String label, PGNode source, PGNode target){
+        PGEdge edge = new PGEdge(label, source,target);
         edge.setId(free_id++);
         this.edges.add(edge);
         return edge;
     }
     
-    public Property createProperty(Node owner, String name, String value){
-        Property prop = new Property(owner,name,value);
+    public PGProperty createProperty(PGNode owner, String name, String value){
+        PGProperty prop = new PGProperty(owner,name,value);
         prop.setId(free_id++);
         this.properties.add(prop);
         if(!nodes.contains(owner)){
@@ -86,8 +86,8 @@ public class PropertyGraph {
         return prop;
     }
     
-    public Property createProperty(Edge owner, String name, String value){
-        Property prop = new Property(owner,name,value);
+    public PGProperty createProperty(PGEdge owner, String name, String value){
+        PGProperty prop = new PGProperty(owner,name,value);
         prop.setId(free_id++);
         this.properties.add(prop);
         if(!edges.contains(owner)){
@@ -98,10 +98,10 @@ public class PropertyGraph {
         return prop;
     }
     
-    public Node getNodeById(int id){
-        Iterator<Node> it = this.nodes.iterator();
+    public PGNode getNodeById(int id){
+        Iterator<PGNode> it = this.nodes.iterator();
         while(it.hasNext()){
-            Node node = it.next();
+            PGNode node = it.next();
             if(node.id == id){
                 return node;
             }
@@ -109,10 +109,10 @@ public class PropertyGraph {
         return null;
     }
     
-    public Edge getEdgeById(int id){
-        Iterator<Edge> it = this.edges.iterator();
+    public PGEdge getEdgeById(int id){
+        Iterator<PGEdge> it = this.edges.iterator();
         while(it.hasNext()){
-            Edge edge = it.next();
+            PGEdge edge = it.next();
             if(edge.id == id){
                 return edge;
             }
@@ -120,10 +120,10 @@ public class PropertyGraph {
         return null;
     }   
     
-    public Property getPropertyById(int id){
-        Iterator<Property> it = this.properties.iterator();
+    public PGProperty getPropertyById(int id){
+        Iterator<PGProperty> it = this.properties.iterator();
         while(it.hasNext()){
-            Property prop = it.next();
+            PGProperty prop = it.next();
             if(prop.getId() == id){
                 return prop;
             }
@@ -137,15 +137,15 @@ public class PropertyGraph {
         String properties = "";
         String source_id;
         String target_id;
-        Node node;
-        Edge edge;
-        Property prop;
+        PGNode node;
+        PGEdge edge;
+        PGProperty prop;
         Iterator<String> itl;
-        Iterator<Property> itp;
+        Iterator<PGProperty> itp;
         try {
             Writer writer = new BufferedWriter(new OutputStreamWriter(new FileOutputStream(outputFileName), "UTF-8"));
             //process nodes
-            Iterator<Node> itn = this.nodes.iterator();
+            Iterator<PGNode> itn = this.nodes.iterator();
             while(itn.hasNext()){
                 node = itn.next();
                 id = "(" + node.getId() + ")";
@@ -170,7 +170,7 @@ public class PropertyGraph {
             }
             
             //process edges
-            Iterator<Edge> ite = this.edges.iterator();
+            Iterator<PGEdge> ite = this.edges.iterator();
             while(ite.hasNext()){
                 edge = ite.next();
                 //process labels

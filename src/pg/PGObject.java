@@ -18,11 +18,11 @@ package pg;
 import java.util.ArrayList;
 import java.util.Iterator;
 
-public abstract class Object {
+public abstract class PGObject {
     
     protected int id = 0;
     protected ArrayList<String> labels = new ArrayList();
-    protected ArrayList<Property> properties = new ArrayList();
+    protected ArrayList<PGProperty> properties = new ArrayList();
 
     public void setId(int _id){
         this.id = _id;
@@ -49,19 +49,19 @@ public abstract class Object {
         return labels.iterator();
     }
 
-    public void addProperty(Property prop){
+    public void addProperty(PGProperty prop){
         if(!properties.contains(prop)){
             properties.add(prop);
         }
     }
     
-    public Iterator<Property> getProperties(){
+    public Iterator<PGProperty> getProperties(){
         return properties.iterator();
     }    
     
     public boolean hasProperty(String property_name){
-        Property prop;
-        Iterator<Property> it = this.properties.iterator();
+        PGProperty prop;
+        Iterator<PGProperty> it = this.properties.iterator();
         while(it.hasNext()){
             prop = it.next();
             if(prop.getLabel().compareTo(property_name)==0){

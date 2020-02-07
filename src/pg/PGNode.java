@@ -15,13 +15,13 @@
  */
 package pg;
 
-public class Node extends Object {
+public class PGNode extends PGObject {
     
-    public Node(){
+    public PGNode(){
         
     }
 
-    public Node(String label) {
+    public PGNode(String label) {
         this.labels.add(label);
     }
         

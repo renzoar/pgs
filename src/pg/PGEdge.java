@@ -15,27 +15,27 @@
  */
 package pg;
 
-public class Edge extends Object{
+public class PGEdge extends PGObject{
     
-    private final Node source_node;
-    private final Node target_node;
+    private final PGNode source_node;
+    private final PGNode target_node;
 
-    public Edge(String _label, Node source, Node target){
+    public PGEdge(String _label, PGNode source, PGNode target){
         this.addLabel(_label);
         this.source_node = source;
         this.target_node = target;
     }
     
-    public Edge(Node source, Node target){
+    public PGEdge(PGNode source, PGNode target){
         this.source_node = source;
         this.target_node = target;
     }
     
-    public Node getSourceNode(){
+    public PGNode getSourceNode(){
         return this.source_node;
     }
     
-    public Node getTargetNode(){
+    public PGNode getTargetNode(){
         return this.target_node;
     }
     
